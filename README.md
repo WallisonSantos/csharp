@@ -1,9 +1,9 @@
-<h1 align="center"> PLSQL | C# | Java | Python </h1>
+<h1 align="center"> CSharp </h1>
 
 <p align="center">
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 
-[![GitHub stars](https://img.shields.io/github/stars/WallisonSantos/estudos_py_plsql_csharp?style=social)](https://github.com/WallisonSantos/estudos_py_plsql_csharp/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/WallisonSantos/csharp?style=social)](https://github.com/WallisonSantos/csharp)
 
 <h4 align="center"> :construction:  Projeto em construção  :construction: </h4>
 
