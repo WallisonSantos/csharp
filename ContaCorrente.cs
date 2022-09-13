@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace csharp
     {
         /*  Atributos Privados */
         private string? _correntista;
+        private double _taxa;
 
         /*  Propriedades autoimplementadas */
         public string? Agencia { get; private set; }
@@ -52,6 +54,17 @@ namespace csharp
                 }
             }
         }
+        public double Taxa
+        {
+            get { return _taxa; }
+            private set
+            {
+                if (value >= 0)
+                {
+                    _taxa = value;
+                }
+            }
+        }
 
         /*  Outros métodos da Classe */
         public void Depositar(double vlr_de_dep)
@@ -64,10 +77,11 @@ namespace csharp
         }
         public void Sacar(double vlr_de_saq)
         {
+            Taxa = 5.00;
             if (vlr_de_saq <= Saldo && vlr_de_saq > 0)
             {
                 ValorSaq = ValorSaq + vlr_de_saq;
-                Saldo = Saldo - vlr_de_saq;
+                Saldo = Saldo - vlr_de_saq + Taxa;
             }
         }
         public override string ToString()
@@ -77,7 +91,8 @@ namespace csharp
             + ", Conta " + Conta
             + ", Saldo R$ " + Saldo
             + ", Vlr de Saque " + ValorSaq
-            + ", Vlr de Depósito " + ValorDep;
+            + ", Vlr de Depósito " + ValorDep
+            + ", Vlr de Taxa " + Taxa;
         }
     }
 }
