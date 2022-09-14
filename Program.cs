@@ -22,11 +22,11 @@ namespace csharp
                 System.Console.Write("Entre com o valor para o depósito: ");
                 double depInicial = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-                contaCC = new ContaCorrente(depInicial, 0, 0, titular, "", conta);
+                contaCC = new ContaCorrente(depInicial,0,titular,"",conta);
             }
             else
             {
-                contaCC = new ContaCorrente(0, 0, 0, titular, "", conta);
+                contaCC = new ContaCorrente(0,0,titular,"",conta);
             }
 
             System.Console.WriteLine("\nDados Bancários: \n");

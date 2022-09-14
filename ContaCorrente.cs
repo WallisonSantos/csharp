@@ -30,12 +30,12 @@ namespace csharp
         {
             Saldo = saldo;
         }
-        public ContaCorrente(double saldo, double vlr_de_dep, double vlr_de_saq) : this(saldo)
+        public ContaCorrente(double vlr_de_dep, double vlr_de_saq)
         {
-            ValorDep = vlr_de_dep;
-            ValorSaq = vlr_de_saq;
+            Depositar(vlr_de_dep);
+            Sacar(vlr_de_saq);
         }
-        public ContaCorrente(double saldo, double vlr_de_dep, double vlr_de_saq, string correntista, string agencia, string conta) : this(saldo, vlr_de_dep, vlr_de_saq)
+        public ContaCorrente(double vlr_de_dep, double vlr_de_saq, string correntista, string agencia, string conta) : this(vlr_de_dep, vlr_de_saq)
         {
             Correntista = correntista;
             Agencia = agencia;

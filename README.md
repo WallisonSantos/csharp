@@ -837,4 +837,63 @@
         private class Product
         Nota: classe aninhada (classe dentro de outra classe) por padrão, é private, só poderá ser acessada pela classe mãe dela. Dentro da qual ela foi declarada
 
+### Classes são tipos referência
+
+    - Variáveis cujo tipo são classes não devem ser entendidas como caixas, mas sim “tentáculos” (ponteiros) para caixas
+    - Os objetos ficam na HEAP, eles recebem um endereço indicando sua localização na memória.
+      As variáveis estão na STACK e quando recebe um objeto, passa a apontar para o endereço deste objeto ( Ex.: p1 -> 0X100358 )
+
+    • Product p1, p2;
+    • p1 = new Product("TV", 900.00, 0.00);
+
+    Stack              Heap
+    ---p1---     ->    0X100358: TV-900.00-0
+    ---p2---
+
+
+    - Outro uso comum, é fazer uma variável receber o valor de outra variavel ex.: p2 = p1, neste caso a variável p2 irá passar a apontar para o endereço de memória
+      qual já está sendo apontado pelo p1.
+
+    • Product p1, p2;
+    • p1 = new Product("TV", 900.00, 0.00);
+    • p2 = p1;
+
+    Stack              Heap
+    ---p1---     ->    0X100358: TV-900.00-0
+    ---p2---     ->    0X100358: TV-900.00-0
+
+
+    - Outro ponto importantte, são os Valores "null": tipos referência aceitam o valor "null", que indica que a variável aponta pra ninguém.
+
+    • Product p1, p2;
+    • p1 = new Product("TV", 900.00, 0.00);
+    • p2 = null;
+
+    Stack              Heap
+    ---p1---     ->    0X100358: TV-900.00-0
+    ---p2---     ->    ---------------------
+
+
+    - A linguagem C# possui também tipos valor, que são os "structs". Structs são CAIXAS e não ponteiros.
+      neste exemplo abaixo, a variável y irá passar a ser uma cópia de x
+
+    • double x, y;
+    • x = 10;
+    • y = x;
+
+    Stack              Heap
+
+    ---p1---     ->    0X100358: TV-900.00-0
+    ---p2---     ->    ---------------------
+
+
+
+
+
+
+
+
+
+
+
 </p>
