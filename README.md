@@ -892,18 +892,18 @@
 
     • Exemplo
 
-       namespace Course
-       {
-            struct Point
-            {
-                public double X, Y;
+      namespace Course
+      {
+         struct Point
+         {
+               public double X, Y;
 
-                public override string ToString()
-                {
-                    return "(" + X + "," + Y + ")";
-                }
-            }
-        }
+               public override string ToString()
+               {
+                  return "(" + X + "," + Y + ")";
+               }
+         }
+      }
 
     • Exemplo - erro: variável não atribuída
 
@@ -982,23 +982,47 @@
 
 
       Desalocação por escopo: Neste exemplo abaixo durante a execução, o method1 entra na stack, todos as variáveis e diretivas entram no seu escopo
+    • Ao acessar method1 é criado um escopo, e dentro desse escopo temos a variável x = 10.
+    • Quando chegamos na diretiva if, é criado um novo escopo para o bloco if, que também faz parte do escopo de method1, dentro de if temos a variável y = 20
+    • ao final da execução do bloco if, o escopo da diretiva if será desalocadas e teremos apenas o escopo do method1 com x = 10, que também após a execução será desalocado
 
-        void method1() {
-            int x = 10;
-            if (x > 0) {
-                int y = 20;
-            }
-            Console.WriteLine(x);
-        }
+      Obs.: Isto é desalocação por escopo, e não Garbage Collector !
 
-      Stack                      Heap
-      -escopo > method1
-      -x-              = 10
+      void method1() {
+         int x = 10;
+         if (x > 0) {
+               int y = 20;
+         }
+         Console.WriteLine(x);
+      }
 
-      -escopo > if
-      -y-              = 20
+      Stack                            Heap
+      -escopo    >   method1
+         X           = 10
+         -escopo >   if
+            Y        = 20
+
+    • Pós execução da diretiva if:
+
+      Stack                            Heap
+      -escopo    >   method1
+         X           = 10
 
 
+      Outro exemplo
 
+      void method1() {
+         Product p = method2();
+         Console.WriteLine(p.Name);
+      }
+
+      Product method2() {
+         Product prod = new Product("TV", 900.0, 0);
+         return prod;
+      }
+
+      Resumo
+    • Objetos alocados dinamicamente, quando não possuem mais referência para eles, serão desalocados pelo garbage collector
+    • Variáveis locais são desalocadas imediatamente assim que seu escopo local sai de execução
 
 </p>
