@@ -860,8 +860,7 @@
     • p2 = p1;
 
       Stack              Heap
-      ---p1---     ->    0X100358: TV-900.00-0
-      ---p2---     ->    0X100358: TV-900.00-0
+      -p1- -p2-    ->    0X100358: TV-900.00-0
 
 
       Valor "null":
@@ -885,10 +884,8 @@
     • y = x;
 
       Stack              Heap
-
-      ---p1---     ->    0X100358: TV-900.00-0
-      ---p2---     ->    ---------------------
-
+      -p1-  = 10         --------
+      -p2-  = 10         --------
 
       Structs e inicialização:
       É possível criar seus próprios structs
@@ -923,6 +920,7 @@
       Console.WriteLine(p);
 
       Valores padrão:
+
     • Quando alocamos (new) qualquer tipo estruturado (classe, struct, array), são atribuídos valores padrão aos seus elementos
     • números: 0
     • bool: False
@@ -954,11 +952,51 @@
       momento próximo pelo garbage collector              seu escopo de execução é finalizado
       -----------------------------------------------------------------------------------------------------------------
 
+### Desalocação de memória - garbage collector e escopo local
+
+      Garbage collector
+
+    • É um processo que automatiza o gerenciamento de memória de um programa em execução
+    • O garbage collector monitora os objetos alocados dinamicamente pelo programa (no heap), desalocando aqueles que não estão mais sendo utilizados.
+
+      Desalocação por garbage collector:
+
+    • Product p1, p2;
+    • p1 = new Product("TV", 900.00, 0);
+    • p2 = new Product("Mouse", 30.00, 0);
+
+      Stack              Heap
+      ---p1---     ->    0X100358:   TV-900.00-0
+      ---p2---     ->    0X111900: Mouse-30.00-0
+
+      Confome abaixo: Ao utilizar a seguinte atribuição, p1 = p2, fazemos o p1 -> p2 (ler: a variável p1 irá apontar para onde a variável p2 aponta)
+      Agora o objeto que era apontado pelo p1, perdeu todas as referencias para ele, não há ninguém mais apontando para ele
+      Com isso o Garbage Collector irá identificar essa desreferencia, e então irá desalocar da memória este objeto instanciado
+
+      Stack              Heap
+      -p1- -p2-     ->   0X111900: Mouse-30.00-0
+
+      Será
+      desalocado    ->   0X100358:   TV-900.00-0
+      pelo garbage
 
 
+      Desalocação por escopo: Neste exemplo abaixo durante a execução, o method1 entra na stack, todos as variáveis e diretivas entram no seu escopo
 
+        void method1() {
+            int x = 10;
+            if (x > 0) {
+                int y = 20;
+            }
+            Console.WriteLine(x);
+        }
 
+      Stack                      Heap
+      -escopo > method1
+      -x-              = 10
 
+      -escopo > if
+      -y-              = 20
 
 
 
