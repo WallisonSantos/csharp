@@ -892,32 +892,40 @@
 
     • Exemplo
 
-      namespace Course
-      {
-         struct Point
-         {
-               public double X, Y;
+        namespace Course
+        {
+            struct Point
+            {
+                public double X, Y;
 
-               public override string ToString()
-               {
-                  return "(" + X + "," + Y + ")";
-               }
-         }
-      }
+                public override string ToString()
+                {
+                    return "(" + X + "," + Y + ")";
+                }
+            }
+        }
 
     • Exemplo - erro: variável não atribuída
+      (variável local) Point p
+      Uso de variável local não atribuída "p" [csharp] csharp(CS0165)
 
       Point p;
       Console.WriteLine(p);
 
     • Exemplo - uso correto, inicializando variável
 
+      Point p;
       p.X = 10;
       p.Y = 20;
 
-      Console.WriteLine(p);
       p = new Point();
       Console.WriteLine(p);
+
+      Funcionaria usanto também somente o exemplo abaixo, sem fazer uso do New Point, por ser um tipo valor, esta declaração, cria as CAIXAS na stack da memória,
+      podendo fazer uso normalmente dessas CAIXAS na memória.
+      Point p2;
+      p2.Y = 20;
+      p2.X = 10;
 
       Valores padrão:
 
@@ -1024,5 +1032,45 @@
       Resumo
     • Objetos alocados dinamicamente, quando não possuem mais referência para eles, serão desalocados pelo garbage collector
     • Variáveis locais são desalocadas imediatamente assim que seu escopo local sai de execução
+
+
+
+
+
+
+
+    ContaCorrente contaCC;
+
+    System.Console.Write("Entre com o nro da Conta: ");
+    string? conta = Console.ReadLine();
+
+    System.Console.Write("Entre com o Titular da conta: ");
+    string? titular = Console.ReadLine();
+
+    System.Console.Write("Abrir conta com Depósito inicial (s/n): ");
+    char resp = char.Parse(Console.ReadLine().ToUpper());
+
+    if (resp == 'S')
+    {
+        System.Console.Write("Entre com o valor para o depósito: ");
+        double depInicial = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+        contaCC = new ContaCorrente(depInicial,0,titular,"",conta);
+    }
+    else
+    {
+        contaCC = new ContaCorrente(0,0,titular,"",conta);
+    }
+
+    System.Console.WriteLine("\nDados Bancários: \n");
+    System.Console.WriteLine(contaCC);
+    System.Console.WriteLine("\n");
+
+    contaCC.Sacar(10);
+
+    System.Console.WriteLine("\nDados Bancários: \n");
+    System.Console.WriteLine(contaCC);
+    System.Console.WriteLine("\n");
+
 
 </p>
