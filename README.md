@@ -1077,19 +1077,28 @@
       }
 
 
-    Operador de coalescência nula
-    ?? e?? = operadores (referência C#)
-    O operador de coalizão nula devolve o valor de sua operação à esquerda se não for; caso contrário, avalia o operando à direita e devolve seu resultado. O operador não avalia seu operando à direita se o operand esquerdo avalia para não-nulo.??null??
+      Operador de coalescência nula
+    • ?? e?? = operadores (referência C#)
+    • O operador de coalizão nula devolve o valor de sua operação à esquerda se não for; caso contrário, avalia o operando à direita e devolve seu resultado.
+    • O operador não avalia seu operando à direita se o operand esquerdo avalia para não-nulo.??null??
 
     Disponível em C# 8.0 e posteriormente, o operador de atribuição de coalescing nulos atribui o valor de seu operando à direita ao seu operando à esquerda apenas se o operando à esquerda avaliar. O operador não avalia seu operando à direita se o operand esquerdo avalia para não-nulo.??=null??=
 
     O operador são os dois sinais de interrogação, ??
-    teremos uma variável x do tipo Nullable, ou qualquer outro, aceitável
-    teremos uma variável y, iremos atribuir a y o valor de x
-    porém neste contexto x é nulo, portanto deverá atribuir a Y outro vakid default
+    supondo que teremos uma variável X double Nullable (double? X) que irá valer null (ou qualquer outro valor aceitável)
+    e teremos também o Y que não é Nullable
+    supondo que iremos atribuir o valor de X para Y teremos que fazer uma verificação, para caso seja nullable, ser aplicado o valor 0.00
+    caso não seja verificado irá ocorrer um erro de conversão onde não é possível converter implicitamente double em double?
 
-    Oureo exemplo seria:
+    • Erro: Não é possível converter implicitamente tipo "double?" em "double". Existe uma conversão explícita (há uma conversão ausente?) [csharp]csharp(CS0266)
+      O tipo de valor de nulidade pode ser nulo. [csharp]csharp(CS8629)
 
+      double? X = null;
+      double Y = X;
+
+    • Aplicação correta
+      double? X = null;
+      double Y = X ?? 0.00;
 
 
 </p>

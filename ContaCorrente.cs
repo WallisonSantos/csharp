@@ -1,23 +1,22 @@
 using System;
-using System.Globalization;
-using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace csharp
 {
     public class ContaCorrente
     {
         /*  Atributos Privados */
-        private string? _correntista;
-        private double _taxa;
+        public string? _correntista;
 
         /*  Propriedades autoimplementadas */
         public string? Agencia { get; private set; }
         public string? Conta { get; private set; }
-        public double? ValorSaq { get; private set; }
-        public double ValorDep { get; private set; }
-        public double? Saldo { get; private set; }
+        public double  ValorSaq { get; private set; }
+        public double  ValorDep { get; private set; }
+        public double  Saldo { get; private set; }
 
         /*  Construtores */
         public ContaCorrente()
@@ -54,17 +53,6 @@ namespace csharp
                 }
             }
         }
-        public double Taxa
-        {
-            get { return _taxa; }
-            private set
-            {
-                if (value >= 0)
-                {
-                    _taxa = value;
-                }
-            }
-        }
 
         /*  Outros métodos da Classe */
         public void Depositar(double vlr_de_dep)
@@ -77,11 +65,10 @@ namespace csharp
         }
         public void Sacar(double vlr_de_saq)
         {
-            Taxa = 5.00;
             if (vlr_de_saq <= Saldo && vlr_de_saq > 0)
             {
                 ValorSaq = ValorSaq + vlr_de_saq;
-                Saldo = Saldo - vlr_de_saq + Taxa;
+                Saldo = Saldo - vlr_de_saq;
             }
         }
         public override string ToString()
@@ -91,8 +78,7 @@ namespace csharp
             + ", Conta " + Conta
             + ", Saldo R$ " + Saldo
             + ", Vlr de Saque " + ValorSaq
-            + ", Vlr de Depósito " + ValorDep
-            + ", Vlr de Taxa " + Taxa;
+            + ", Vlr de Depósito " + ValorDep;
         }
     }
     struct Point
