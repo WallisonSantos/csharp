@@ -15,9 +15,9 @@ namespace csharp
         /*  Propriedades autoimplementadas */
         public string? Agencia { get; private set; }
         public string? Conta { get; private set; }
-        public double ValorSaq { get; private set; }
+        public double? ValorSaq { get; private set; }
         public double ValorDep { get; private set; }
-        public double Saldo { get; private set; }
+        public double? Saldo { get; private set; }
 
         /*  Construtores */
         public ContaCorrente()

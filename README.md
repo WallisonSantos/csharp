@@ -1019,58 +1019,77 @@
 
       Outro exemplo
 
-      void method1() {
-         Product p = method2();
-         Console.WriteLine(p.Name);
-      }
+        void method1() {
+            Product p = method2();
+            Console.WriteLine(p.Name);
+        }
 
-      Product method2() {
-         Product prod = new Product("TV", 900.0, 0);
-         return prod;
-      }
+        Product method2() {
+            Product prod = new Product("TV", 900.0, 0);
+            return prod;
+        }
+
+    • Na Stack, dentro do method1 a variável P irá chamar o method2, que irá declarar a variável prod atribuindo na Heap o objeto Product:TV, 900, 0
+    • Todos as variáveis da Stack do method2 irão ser desalocadas, após return
+    • Então o programa retorna a referencia desse objeto Product criado na Heap, para a variável p dentro da Stack
 
       Resumo
     • Objetos alocados dinamicamente, quando não possuem mais referência para eles, serão desalocados pelo garbage collector
     • Variáveis locais são desalocadas imediatamente assim que seu escopo local sai de execução
 
 
+      Nullable
+    • É um recurso de C# para que dados de tipo valor (structs) possam receber o valor null
+
+      Uso comum:
+    • Campos de banco de dados que podem valer nulo data de nascimento, algum valor numérico, etc
+    • É um recurso de C# para que dados de tipo valor (structs) possam receber o valor null
+    • Dados e parâmetros opcionais.
+
+    •          double  ValorSaq { get; private set; }
+    • Nullable<double> ValorSaq { get; private set; }
+
+    Porém existe uma forma mais simples de declarar isto:
+    • public double? ValorSaq { get; private set; }
+
+      double? X = -10;
+      double? Y = 22.88;
+      double? Z = null;
+
+      if (X.HasValue == true && X.Value > 0)
+      {
+          System.Console.WriteLine($"O valor de X é de R$ {X.Value}");
+      }
+      else if (X.HasValue == false)
+      {
+          System.Console.WriteLine($"O valor de x esta vazio{X.Value}");
+      }
+      else if (Y.HasValue == true && Y.Value > 0)
+      {
+          System.Console.WriteLine($"O valor de Y é de R$ {Y.Value}");
+      }
+      else if (Z.HasValue == false)
+      {
+          System.Console.WriteLine($"O valor de Z esta vazio{Z.Value}");
+      }
+      {
+          System.Console.WriteLine("Error !");
+      }
 
 
+    Operador de coalescência nula
+    ?? e?? = operadores (referência C#)
+    O operador de coalizão nula devolve o valor de sua operação à esquerda se não for; caso contrário, avalia o operando à direita e devolve seu resultado. O operador não avalia seu operando à direita se o operand esquerdo avalia para não-nulo.??null??
 
+    Disponível em C# 8.0 e posteriormente, o operador de atribuição de coalescing nulos atribui o valor de seu operando à direita ao seu operando à esquerda apenas se o operando à esquerda avaliar. O operador não avalia seu operando à direita se o operand esquerdo avalia para não-nulo.??=null??=
 
+    O operador é os dois sinais de interrogação,
+    sendo uma variável x do tipo Nullable, ou qualquer outro, aceitável
+    teremos uma variável y, porém queremos atribuir a y o valor de x
+    porém neste contexto x é nulo, portanto tera que der
 
-    ContaCorrente contaCC;
+    Oureo exemplo seria:
 
-    System.Console.Write("Entre com o nro da Conta: ");
-    string? conta = Console.ReadLine();
-
-    System.Console.Write("Entre com o Titular da conta: ");
-    string? titular = Console.ReadLine();
-
-    System.Console.Write("Abrir conta com Depósito inicial (s/n): ");
-    char resp = char.Parse(Console.ReadLine().ToUpper());
-
-    if (resp == 'S')
-    {
-        System.Console.Write("Entre com o valor para o depósito: ");
-        double depInicial = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-        contaCC = new ContaCorrente(depInicial,0,titular,"",conta);
-    }
-    else
-    {
-        contaCC = new ContaCorrente(0,0,titular,"",conta);
-    }
-
-    System.Console.WriteLine("\nDados Bancários: \n");
-    System.Console.WriteLine(contaCC);
-    System.Console.WriteLine("\n");
-
-    contaCC.Sacar(10);
-
-    System.Console.WriteLine("\nDados Bancários: \n");
-    System.Console.WriteLine(contaCC);
-    System.Console.WriteLine("\n");
 
 
 </p>
