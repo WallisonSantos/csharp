@@ -1083,10 +1083,10 @@
 
     Disponível em C# 8.0 e posteriormente, o operador de atribuição de coalescing nulos atribui o valor de seu operando à direita ao seu operando à esquerda apenas se o operando à esquerda avaliar. O operador não avalia seu operando à direita se o operand esquerdo avalia para não-nulo.??=null??=
 
-    O operador é os dois sinais de interrogação,
-    sendo uma variável x do tipo Nullable, ou qualquer outro, aceitável
-    teremos uma variável y, porém queremos atribuir a y o valor de x
-    porém neste contexto x é nulo, portanto tera que der
+    O operador são os dois sinais de interrogação, ??
+    teremos uma variável x do tipo Nullable, ou qualquer outro, aceitável
+    teremos uma variável y, iremos atribuir a y o valor de x
+    porém neste contexto x é nulo, portanto deverá atribuir a Y outro vakid default
 
     Oureo exemplo seria:
 
