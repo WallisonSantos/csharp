@@ -82,13 +82,4 @@ namespace csharp
             + ", Vlr de Depósito R$" + ValorDep.ToString("F2", CultureInfo.InvariantCulture);
         }
     }
-    struct Point
-    {
-        public double X, Y;
-
-        public override string ToString()
-        {
-            return "(" + X + "," + Y + ")";
-        }
-    }
 }
