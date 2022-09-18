@@ -9,14 +9,14 @@ namespace csharp
     public class ContaCorrente
     {
         /*  Atributos Privados */
-        public string? _correntista;
+        private string? _correntista;
+        private double  _saldo;
 
         /*  Propriedades autoimplementadas */
-        public string? Agencia { get; private set; }
-        public string? Conta { get; private set; }
-        public double  ValorSaq { get; private set; }
-        public double  ValorDep { get; private set; }
-        public double  Saldo { get; private set; }
+        public string? Agencia { get; set; }
+        public string? Conta { get; set; }
+        public double  ValorSaq { get; set; }
+        public double  ValorDep { get; set; }
 
         /*  Construtores */
         public ContaCorrente()
@@ -27,7 +27,7 @@ namespace csharp
         }
         public ContaCorrente(double saldo) : this()
         {
-            Saldo = saldo;
+            _saldo = saldo;
         }
         public ContaCorrente(double vlr_de_dep, double vlr_de_saq)
         {
@@ -55,20 +55,21 @@ namespace csharp
         }
 
         /*  Outros métodos da Classe */
+        public double Saldo() {
+            return _saldo + ValorDep - ValorSaq;
+        }
         public void Depositar(double vlr_de_dep)
         {
             if (vlr_de_dep > 0)
             {
                 ValorDep = ValorDep + vlr_de_dep;
-                Saldo = Saldo + vlr_de_dep;
             }
         }
         public void Sacar(double vlr_de_saq)
         {
-            if (vlr_de_saq <= Saldo && vlr_de_saq > 0)
+            if (vlr_de_saq <= _saldo && vlr_de_saq > 0)
             {
                 ValorSaq = ValorSaq + vlr_de_saq;
-                Saldo = Saldo - vlr_de_saq;
             }
         }
         public override string ToString()
@@ -76,9 +77,9 @@ namespace csharp
             return "\n Olá " + Correntista
             + ", Agência " + Agencia
             + ", Conta " + Conta
-            + ", Saldo R$ " + Saldo
-            + ", Vlr de Saque " + ValorSaq
-            + ", Vlr de Depósito " + ValorDep;
+            + ", Saldo R$ " + Saldo().ToString("F2", CultureInfo.InvariantCulture)
+            + ", Vlr de Saque R$" + ValorSaq.ToString("F2", CultureInfo.InvariantCulture)
+            + ", Vlr de Depósito R$" + ValorDep.ToString("F2", CultureInfo.InvariantCulture);
         }
     }
     struct Point

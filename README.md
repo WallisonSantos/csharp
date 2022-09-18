@@ -1090,15 +1090,163 @@
     supondo que iremos atribuir o valor de X para Y teremos que fazer uma verificação, para caso seja nullable, ser aplicado o valor 0.00
     caso não seja verificado irá ocorrer um erro de conversão onde não é possível converter implicitamente double em double?
 
-    • Erro: Não é possível converter implicitamente tipo "double?" em "double". Existe uma conversão explícita (há uma conversão ausente?) [csharp]csharp(CS0266)
+    • Erro: Não é possível converter implicitamente tipo "double?" em "double".
+      Existe uma conversão explícita (há uma conversão ausente?) [csharp]csharp(CS0266)
       O tipo de valor de nulidade pode ser nulo. [csharp]csharp(CS8629)
 
       double? X = null;
-      double Y = X;
+      double  Y = X;
 
     • Aplicação correta
       double? X = null;
-      double Y = X ?? 0.00;
+      double  Y = X ?? 0.00;
+
+    • Outro exemplo
+      double? X = null;
+      double? Y = 10.00;
+
+      double a = X ?? 5.00;
+      double b = Y ?? 5.00;
+
+
+      Vetores
+    • Em programação, "vetor" é o nome dado a arranjos unidimensionais
+    • Arranjo é uma estrutura de dados:
+        Homogênea (dados do mesmo tipo)
+        Ordenada (elementos acessados por meio de posições)
+        Alocada de uma vez só, em um bloco contíguo de memória
+
+      Ex.: double vetor = ( posição 0: 1.10,
+                            posição 1: 1.56,
+                            posição 2: 1.98
+                          )
+
+    • Vantagens:
+        Acesso imediato aos elementos pela sua posição
+
+    • Desvantagens:
+        Tamanho fixo
+        Dificuldade para se realizar inserções e deleções
+
+    Ex.: Uso de vetor armazenando elementos do tipo Structs
+    • Declaramos o N que irá alimentar a quantidade de posições para o vetor de forma dinâmica a partir da entrada do terminal
+
+    • int N = int.Parse(Console.ReadLine());
+    • double[] Vetor = new double[N];
+
+      Stack              Heap
+      -N        = 3      ----------------
+      -Vetor     ->      0X100358 0: 1.50
+      -Vetor     ->      0X100358 1: 2.00
+      -Vetor     ->      0X100358 2: 2.50
+
+    • Para alimentar o vetor teremos que utilizar For, percorrendo posição por posição e inserindo o valor para essa posição
+
+    using System;
+    using System.Globalization;
+
+    namespace csharp
+    {
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                System.Console.WriteLine("Digite a quantidade de elementos para o vetor: ");
+
+                int posicao = int.Parse(Console.ReadLine());
+                double[] vetor = new double[posicao];
+
+                System.Console.WriteLine("\n");
+
+                for (int i = 0; i < posicao; i++)
+                {
+                    vetor[i] = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    while (posicao < 3)
+                    {
+                        System.Console.WriteLine($"VETOR {i} de {posicao}");
+                    }
+                }
+
+                double sum = 0.00;
+                for (int i = 0; i < posicao; i++)
+                {
+                    sum = sum + vetor[i];
+                    System.Console.WriteLine($"SOMA {i} de {posicao} = {sum}");
+                }
+
+                double media = sum / posicao;
+                System.Console.WriteLine($"AVERAGE HEIGT = {media}");
+            }
+        }
+    }
+
+    Ex.: Uso de vetor armazenando elementos do tipo Class
+    • Declaramos o N que irá alimentar a quantidade de posições para o vetor de forma dinâmica a partir da entrada do terminal
+      Este vetor será diferente pois irá criar um objeto em cada uma dessas posições ao ser acessado por meio do iterador For
+
+    • int n = int.Parse(Console.ReadLine());
+    • ContaCorrente[] vetor = new ContaCorrente[n];
+
+      Stack              Heap
+      -N        = 3      ------------------------------------------------------------------
+      -Vetor     ->      0X100358 0: -> ContaCorrente: [Agencia:X, Conta:XX, ValorDep: 100]
+      -Vetor     ->      0X100358 1: -> ContaCorrente: [Agencia:Y, Conta:YY, ValorDep: 100]
+      -Vetor     ->      0X100358 2: -> ContaCorrente: [Agencia:Z, Conta:ZZ, ValorDep: 100]
+
+    • Para alimentar o vetor teremos que utilizar For, percorrendo posição por posição e instanciando um novo objeto no vetor criado no Heap
+      para adicionar valores aos elementos teremos que percorrer o vetor em todas as suas posição, acessando o elemento a partir do ponto
+
+    namespace csharp {
+        class Program {
+            static void Main(string[] args) {
+
+                // Variáveis auxiliares globais da Stack
+                double vlrSaldo = 0.00;
+                int numElements = 2;
+
+                // Variável do tipo vetor de conta corrente, na Stack com a quantidade de Posições conforme variável numElements
+                // as Posições serão criadas na memória Heap
+                ContaCorrente[] vetor = new ContaCorrente[numElements];
+
+                for (int i = 0; i < numElements; i++) {
+
+                    // definindo atributos para o Objeto que será criado na Posição[n]
+                    System.Console.Write($"Agencia Nro ({i}): ");
+                    string? agencia = Console.ReadLine();
+                    System.Console.Write($"Conta Nro ({i}): ");
+                    string? conta = Console.ReadLine();
+                    System.Console.Write($"Valor de depósito inicial ({i}): ");
+                    double valorDep = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                    // instanciando o novo Objeto a partir da posição[n] passando os atributos definidos
+                    vetor[i] = new ContaCorrente {
+                        Agencia = agencia,
+                        Conta = conta,
+                        ValorDep = valorDep
+                    };
+                }
+
+                // Acessando as Posições do vetor, aplicando o método de depositar em cada um dos Objetos da respectiva posição
+                for (int i = 0; i < numElements; i++) {
+                    vetor[i].Depositar(100);
+                    System.Console.WriteLine(vetor[i]);
+                }
+
+                // Somar os saldos disponíveis nas contas, acessando as Posições do vetor invocando o atributo Saldo do Objeto
+                for (int i = 0; i < numElements; i++) {
+                    vlrSaldo += vetor[i].Saldo();
+                }
+                System.Console.WriteLine($"\nValor total disponível nas contas R$ {vlrSaldo}\n");
+
+            }
+        }
+    }
+
+
+
+
+
+
 
 
 </p>
