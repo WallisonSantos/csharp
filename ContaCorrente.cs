@@ -122,5 +122,12 @@ namespace csharp
             + ", Vlr de Saque R$" + ValorSaq.ToString("F2", CultureInfo.InvariantCulture)
             + ", Vlr de Depósito R$" + ValorDep.ToString("F2", CultureInfo.InvariantCulture);
         }
+        public static int Sum(params int[] numbers) {
+            int sum = 0;
+            for (int i=0; i<numbers.Length; i++) {
+                sum += numbers[i];
+            }
+            return sum;
+        }
     }
 }

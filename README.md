@@ -1242,55 +1242,52 @@
         }
     }
 
-    namespace csharp {
-        class Program {
-            static void Main(string[] args) {
+      class Program {
+         static void Main(string[] args) {
+            int numElementos = 2;
+            double    indice = 0;
+            double totalTaxa = 0.00;
 
-                int numElementos = 2;
-                double    indice = 0;
-                double totalTaxa = 0.00;
+            ContaCorrente[] vetor = new ContaCorrente[numElementos];
 
-                ContaCorrente[] vetor = new ContaCorrente[numElementos];
+            for (int i = 0; i < numElementos; i++) {
+               indice += 1;
 
-                for (int i = 0; i < numElementos; i++) {
-                    indice += 1;
+               Console.Write($"\nCorrentista ({indice}): ");
+               string? correntista = Console.ReadLine();
 
-                    Console.Write($"\nCorrentista ({indice}): ");
-                    string? correntista = Console.ReadLine();
+               Console.Write($"\nAgencia ({indice}): ");
+               string?     agencia = Console.ReadLine();
 
-                    Console.Write($"\nAgencia ({indice}): ");
-                    string?     agencia = Console.ReadLine();
+               Console.Write($"\nConta ({indice}): ");
+               string?       conta = Console.ReadLine();
 
-                    Console.Write($"\nConta ({indice}): ");
-                    string?       conta = Console.ReadLine();
+               Console.Write($"\nTaxa ({indice}): ");
+               double         taxa = double.Parse(Console.ReadLine());
 
-                    Console.Write($"\nTaxa ({indice}): ");
-                    double         taxa = double.Parse(Console.ReadLine());
+               Console.Write($"\nValorDep({indice}): ");
+               double         dep = double.Parse(Console.ReadLine());
 
-                    Console.Write($"\nValorDep({indice}): ");
-                    double         dep = double.Parse(Console.ReadLine());
-
-                    vetor[i] = new ContaCorrente {
-                        Correntista = correntista,
-                        Agencia = agencia,
-                        Conta = conta,
-                        Taxa = taxa,
-                        ValorDep = dep,
-                    };
-                    Console.WriteLine($"\nVETOR ({indice}) - {vetor[i]}");
-                }
-
-                for (int i = 0; i < numElementos; i++) {
-                    indice += 1;
-                    totalTaxa = totalTaxa + vetor[i].Taxa;
-                    Console.WriteLine($"\nTAXA DO VETOR ({indice}) {vetor[i].Taxa}");
-                }
-
-                double mediaTaxa = totalTaxa / numElementos;
-                Console.WriteLine($"\nAverage rate % {mediaTaxa} \n");
+               vetor[i] = new ContaCorrente {
+                  Correntista = correntista,
+                  Agencia = agencia,
+                  Conta = conta,
+                  Taxa = taxa,
+                  ValorDep = dep,
+               };
+               Console.WriteLine($"\nVETOR ({indice}) - {vetor[i]}");
             }
-        }
-    }
+
+            for (int i = 0; i < numElementos; i++) {
+               indice += 1;
+               totalTaxa = totalTaxa + vetor[i].Taxa;
+               Console.WriteLine($"\nTAXA DO VETOR ({indice}) {vetor[i].Taxa}");
+            }
+
+            double mediaTaxa = totalTaxa / numElementos;
+            Console.WriteLine($"\nAverage rate % {mediaTaxa} \n");
+         }
+      }
 
 
 
@@ -1300,6 +1297,7 @@
 
     namespace Course {
         class Calculator {
+
             public static int Sum(int n1, int n2) {
                 return n1 + n2;
             }
@@ -1312,22 +1310,40 @@
         }
     }
 
-    • Solução com vetor:
+      Solução com vetor:
+    • Neste caso ao utilizar esta função, com o atributo Params, passamos ao compilador que queremos passar uma quantidade variável de valores
+    • Também não existe a necessidade de intanciar um objeto, ao chamar esta função, devido ao modificado params
 
-    namespace Course {
-        class Calculator {
-            public static int Sum(int[] numbers) {
-                int sum = 0;
-                for (int i = 0; i < numbers.Length; i++) {
-                    sum += numbers[i];
-                }
-                return sum;
+   namespace Course {
+      class Calculator {
+
+         public static int Sum(params int[] numbers) {
+            int sum = 0;
+            for (int i=0; i<numbers.Length; i++) {
+               sum += numbers[i];
             }
-        }
-    }
+            return sum;
+         }
+      }
+   }
 
+    • Chamada a função, com modificador de parametro params
 
+   namespace csharp {
+      class Program {
+         static void Main(string[] args) {
 
+            // sem uso de params
+            int result = ContaCorrente.Sum(new int[] { 10, 20, 30 });
+            System.Console.WriteLine(result);
+
+            // com uso de params
+            int result = ContaCorrente.Sum( 10, 20, 30 );
+            System.Console.WriteLine(result);
+
+         }
+      }
+   }
 
 
 
