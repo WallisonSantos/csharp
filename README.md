@@ -1363,7 +1363,7 @@
         static void Main(string[] args) {
 
             int a = 10;
-            ContaCorrente.Triple(ref a);
+            ContaCorrente.Triple(ref a);s
             Console.WriteLine(a);
 
             double b = 5;
@@ -1371,7 +1371,6 @@
             Console.WriteLine(b);
         }
     }
-
 
     Stack
     ------------------------------
