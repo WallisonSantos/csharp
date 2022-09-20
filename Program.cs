@@ -4,11 +4,13 @@ namespace csharp {
     class Program {
         static void Main(string[] args) {
 
-            int result = ContaCorrente.Sum(new int[] { 10, 20, 30 });
-            int result2 = ContaCorrente.Sum(new int[] { 10, 20, 30 });
+            int a = 10;
+            ContaCorrente.Triple(ref a);
+            Console.WriteLine(a);
 
-            System.Console.WriteLine(result2);
-
+            double b = 5;
+            ContaCorrente.Aplicacao(ref b   );
+            Console.WriteLine(b);
 
         }
     }

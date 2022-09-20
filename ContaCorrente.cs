@@ -129,5 +129,11 @@ namespace csharp
             }
             return sum;
         }
+        public void Triple(ref int x) {
+            x = x * 3;
+        }
+        public static void Aplicacao(ref double valor) {
+            valor = valor * 1.20;
+        }
     }
 }
