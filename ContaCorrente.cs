@@ -11,19 +11,20 @@ namespace csharp
         /*  Atributos Privados */
         private string? _correntista;
         private string? _chave_pix;
-        private double  _saldo;
-        private double  _taxa;
+        private double _saldo;
+        private double _taxa;
 
         /*  Propriedades autoimplementadas */
         public string? Conta { get; set; }
         public string? Agencia { get; set; }
-        public double  ValorSaq { get; set; }
-        public double  ValorDep { get; set; }
+        public double ValorSaq { get; set; }
+        public double ValorDep { get; set; }
+        private static double _total_aplicacao { get; set; }
 
         /*  Construtores */
         public ContaCorrente(string correntista, string chavepix)
         {
-            ChavePix    = chavepix;
+            ChavePix = chavepix;
             Correntista = correntista;
         }
         public ContaCorrente(double taxa, string correntista, string agencia, string conta)
@@ -122,18 +123,57 @@ namespace csharp
             + ", Vlr de Saque R$" + ValorSaq.ToString("F2", CultureInfo.InvariantCulture)
             + ", Vlr de Depósito R$" + ValorDep.ToString("F2", CultureInfo.InvariantCulture);
         }
-        public static int Sum(params int[] numbers) {
-            int sum = 0;
-            for (int i=0; i<numbers.Length; i++) {
-                sum += numbers[i];
+
+        // Função que irá receber uma quantidade variável de valores para soma
+        // Usando vetor na passagem de parametro e iterando sobre esse mesmo vetor aplicando a soma da variável _total_aplicacao + numbers(na posição atual do vetor)
+        public static double Sum(params double[] numbers)
+        {
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                _total_aplicacao = _total_aplicacao + numbers[i];
             }
-            return sum;
+            return _total_aplicacao;
         }
-        public void Triple(ref int x) {
-            x = x * 3;
+        // Uso de Modificadores de parâmetros ref e out
+        public static void Sum2(ref double x)
+        {
+            x = x + 1.20;
         }
-        public static void Aplicacao(ref double valor) {
-            valor = valor * 1.20;
+        public static void Mult(double origin, out double result)
+        {
+            result = origin * 1.20;
         }
+        public static string[] UFagencias = new string[] { "SP", "ES", "RJ" };
+    }
+
+
+    // Objeto de negócios simples. Um PartId é usado para identificar o tipo de peça
+    // mas o nome da peça pode mudar.
+    public class Part : IEquatable<Part>
+    {
+        public int PartId { get; set; }
+        public string PartName { get; set; }
+
+        public bool Equals(Part other)
+        {
+            if (other == null) return false;
+            return (this.PartId.Equals(other.PartId));
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            Part objAsPart = obj as Part;
+            if (objAsPart == null) return false;
+            else return Equals(objAsPart);
+        }
+        public override int GetHashCode()
+        {
+            return PartId;
+        }
+        public override string ToString()
+        {
+            return "ID: " + PartId + "   Name: " + PartName;
+        }
+        // Should also override == and != operators.
     }
 }
