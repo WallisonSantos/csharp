@@ -862,8 +862,8 @@
       Stack              Heap
       -p1- -p2-    ->    0X100358: TV-900.00-0
 
+### Valor "null"
 
-      Valor "null":
       Outro ponto importante, são os Valores "null": tipos referência aceitam o valor "null", que indica que a variável aponta pra ninguém.
 
     • Product p1, p2;
@@ -874,6 +874,7 @@
       ---p1---     ->    0X100358: TV-900.00-0
       ---p2---     ->    ---------------------
 
+### Structs e inicialização
 
       Structs são tipos valor:
       A linguagem C# possui também tipos valor, que são os "structs". Structs são CAIXAS e não ponteiros.
@@ -887,7 +888,6 @@
       -p1-  = 10         --------
       -p2-  = 10         --------
 
-      Structs e inicialização:
       É possível criar seus próprios structs
 
     • Exemplo
@@ -960,7 +960,7 @@
       momento próximo pelo garbage collector              seu escopo de execução é finalizado
       -----------------------------------------------------------------------------------------------------------------
 
-### Desalocação de memória - garbage collector e escopo local
+### Desalocação de memória - garbage collector
 
       Garbage collector
 
@@ -988,8 +988,9 @@
       desalocado    ->   0X100358:   TV-900.00-0
       pelo garbage
 
+### Desalocação de memória por escopo
 
-      Desalocação por escopo: Neste exemplo abaixo durante a execução, o method1 entra na stack, todos as variáveis e diretivas entram no seu escopo
+      Neste exemplo abaixo durante a execução, o method1 entra na stack, todos as variáveis e diretivas entram no seu escopo
     • Ao acessar method1 é criado um escopo, e dentro desse escopo temos a variável x = 10.
     • Quando chegamos na diretiva if, é criado um novo escopo para o bloco if, que também faz parte do escopo de method1, dentro de if temos a variável y = 20
     • ao final da execução do bloco if, o escopo da diretiva if será desalocadas e teremos apenas o escopo do method1 com x = 10, que também após a execução será desalocado
@@ -1037,8 +1038,8 @@
     • Objetos alocados dinamicamente, quando não possuem mais referência para eles, serão desalocados pelo garbage collector
     • Variáveis locais são desalocadas imediatamente assim que seu escopo local sai de execução
 
+### Nullable
 
-      Nullable
     • É um recurso de C# para que dados de tipo valor (structs) possam receber o valor null
 
       Uso comum:
@@ -1076,8 +1077,8 @@
           System.Console.WriteLine("Error !");
       }
 
+### Operador de coalescência nula
 
-      Operador de coalescência nula
     • ?? e?? = operadores (referência C#)
     • O operador de coalizão nula devolve o valor de sua operação à esquerda se não for; caso contrário, avalia o operando à direita e devolve seu resultado.
     • O operador não avalia seu operando à direita se o operand esquerdo avalia para não-nulo.??null??
@@ -1108,8 +1109,8 @@
       double a = X ?? 5.00;
       double b = Y ?? 5.00;
 
+### Vetores
 
-      Vetores
     • Em programação, "vetor" é o nome dado a arranjos unidimensionais
     • Arranjo é uma estrutura de dados:
         Homogênea (dados do mesmo tipo)
@@ -1289,9 +1290,8 @@
         }
     }
 
+### Modificador de parâmetros: params
 
-
-    Modificador de parâmetros: params
     • Suponha que se queira uma calculadora para calcular a soma de uma quantidade variável de valores.
     • Solução ruim usando sobrecarga:
 
@@ -1363,8 +1363,8 @@
         }
     }
 
+### Modificador de parâmetros: ref e out
 
-      Modificador de parâmetros: ref e out
     • Modificador ref: Suponha que se queira uma calculadora com uma operação para triplicar o valor de um número passado como parâmetro:
 
     namespace csharp{
@@ -1398,8 +1398,7 @@
     • Conclusão: ambos são muito similares, mas ref é uma forma de fazer o compilador obrigar o usuário a iniciar a variável.
     • Nota: ambos são considerados "code smells" (design ruim) e devem ser evitados.
 
-
-    Boxing e unboxing
+### Boxing e unboxing
 
     Boxing
     • É o processo de conversão de um objeto tipo valor para um objeto tipo referência compatíve
@@ -1426,8 +1425,8 @@
       Y = 20         ---------------------
       Obj      ->    20
 
+### Sintaxe opcional: laço foreach
 
-    Sintaxe opcional: laço foreach
     • Laço for each: Sintaxe opcional e simplificada para percorrer coleções
       Leitura: "para cada objeto 'obj' contido em vect, faça:"
 
@@ -1444,8 +1443,8 @@
         System.Console.WriteLine(agencias);
     }
 
+### List<T> Class
 
-      List<T> Class
       Namespace: System.Collections.Generic
       Assembly: System.Collections.dll
     • Representa uma lista fortemente tipada de objetos que podem ser acessados por índice.
@@ -1472,13 +1471,23 @@
     • IEnumerable
     • IList
 
-    Checklist
-    • Conceito de lista
-    • Tipo List - Declaração, instanciação
     • Referência: https://msdn.microsoft.com/en-us/library/6sh2ey19(v=vs.110).aspx
-    • Assuntos pendentes:
-    • generics
-    • predicados (lambda)
+    • Assuntos pendentes: generics, predicados (lambda)
+
+
+      Lista é uma estrutura de dados:
+    • Homogênea (dados do mesmo tipo)
+    • Ordenada (elementos acessados por meio de posições)
+    • Inicia vazia, e seus elementos são alocados sob demanda
+    • Cada elemento ocupa um "nó" (ou nodo) da lista
+    • Classe: List
+    • Namespace: System.Collections.Generic
+    • Vantagens:
+    • Tamanho variável
+    • Facilidade para se realizar inserções e deleções
+    • Desvantagens:
+    • Acesso sequencial aos elementos *
+
 
     Exemplos: O exemplo a seguir demonstra como adicionar, remover e inserir um objeto de negócios simples em um List<T> .
 
