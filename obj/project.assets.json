@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\walli\\.nuget\\packages\\": {}
+    "C:\\Users\\wallison-santos\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\walli\\OneDrive\\Documentos\\GitHub\\csharp\\csharp.csproj",
+      "projectUniqueName": "C:\\Users\\wallison-santos\\Documents\\GitHub\\csharp\\csharp.csproj",
       "projectName": "csharp",
-      "projectPath": "C:\\Users\\walli\\OneDrive\\Documentos\\GitHub\\csharp\\csharp.csproj",
-      "packagesPath": "C:\\Users\\walli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\walli\\OneDrive\\Documentos\\GitHub\\csharp\\obj\\",
+      "projectPath": "C:\\Users\\wallison-santos\\Documents\\GitHub\\csharp\\csharp.csproj",
+      "packagesPath": "C:\\Users\\wallison-santos\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wallison-santos\\Documents\\GitHub\\csharp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\walli\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\wallison-santos\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -49,7 +49,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -58,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
