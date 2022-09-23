@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace csharp
 {
-    public class ContaCorrente
+    public class ContaCorrente : IEquatable<ContaCorrente>
     {
         /*  Atributos Privados */
         private string? _correntista;
-        private string? _chave_pix;
+        private int _chave_pix;
         private double _saldo;
         private double _taxa;
 
@@ -22,7 +22,7 @@ namespace csharp
         private static double _total_aplicacao { get; set; }
 
         /*  Construtores */
-        public ContaCorrente(string correntista, string chavepix)
+        public ContaCorrente(string correntista, int chavepix)
         {
             ChavePix = chavepix;
             Correntista = correntista;
@@ -53,12 +53,12 @@ namespace csharp
         }
 
         /*  Propriedades customizadas */
-        public string? ChavePix
+        public int ChavePix
         {
             get { return _chave_pix; }
             set
             {
-                if (value != null)
+                if (value > 0)
                 {
                     _chave_pix = value;
                 }
@@ -113,9 +113,28 @@ namespace csharp
                 ValorSaq = ValorSaq + vlr_de_saq;
             }
         }
+
+        public override bool Equals(object? obj)
+        {
+            if ( obj == null ) return false;
+            ContaCorrente? objAsConta = obj as ContaCorrente;
+            if ( objAsConta == null ) return false;
+            else return Equals(objAsConta);
+        }
+
+        public override int GetHashCode()
+        {
+            return ChavePix;
+        }
+
+        public bool Equals(ContaCorrente? other) {
+            if ( other == null ) return false;
+            return ( ChavePix.Equals( other.ChavePix));
+        }
+
         public override string ToString()
         {
-            return "Olá " + Correntista
+            return "Olá " + Correntista+"X"+ChavePix
             + ", Agência " + Agencia
             + ", Conta " + Conta
             + ", Saldo R$ " + Saldo.ToString("F2", CultureInfo.InvariantCulture)
@@ -143,37 +162,5 @@ namespace csharp
         {
             result = origin * 1.20;
         }
-        public static string[] UFagencias = new string[] { "SP", "ES", "RJ" };
-    }
-
-
-    // Objeto de negócios simples. Um PartId é usado para identificar o tipo de peça
-    // mas o nome da peça pode mudar.
-    public class Part : IEquatable<Part>
-    {
-        public int PartId { get; set; }
-        public string PartName { get; set; }
-
-        public bool Equals(Part other)
-        {
-            if (other == null) return false;
-            return (this.PartId.Equals(other.PartId));
-        }
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-            Part objAsPart = obj as Part;
-            if (objAsPart == null) return false;
-            else return Equals(objAsPart);
-        }
-        public override int GetHashCode()
-        {
-            return PartId;
-        }
-        public override string ToString()
-        {
-            return "ID: " + PartId + "   Name: " + PartName;
-        }
-        // Should also override == and != operators.
     }
 }

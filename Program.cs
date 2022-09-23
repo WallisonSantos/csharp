@@ -8,57 +8,37 @@ namespace csharp
         static void Main(string[] args)
         {
             // Criando a lista de parts.
-            List<Part> parts = new List<Part>();
+            List<ContaCorrente> Conta = new List<ContaCorrente>();
 
-            // Adicionando parts para a lista.
-            parts.Add(new Part() { PartName = "crank arm", PartId = 1234 });
-            parts.Add(new Part() { PartName = "chain ring", PartId = 1334 });
-            parts.Add(new Part() { PartName = "regular seat", PartId = 1434 });
-            parts.Add(new Part() { PartName = "banana seat", PartId = 1444 });
-            parts.Add(new Part() { PartName = "cassette", PartId = 1534 });
-            parts.Add(new Part() { PartName = "shift lever", PartId = 1634 });
+            Conta.Add(new ContaCorrente() { Correntista = "WTA", ChavePix = 00009 });
+            Conta.Add(new ContaCorrente() { Correntista = "KAS", ChavePix = 00010 });
+            Conta.Add(new ContaCorrente() { Correntista = "MAA", ChavePix = 00011 });
+            Conta.Add(new ContaCorrente() { Correntista = "AAS", ChavePix = 00012 });
 
-            // Escreva as partes na lista. Isso chamará o método ToString substituído
-            // na classe Parte.
-            Console.WriteLine();
-            foreach (Part aPart in parts)
+            Conta.Insert(2, new ContaCorrente() { Correntista = "JGF", ChavePix = 00013 });
+
+            foreach (ContaCorrente contas in Conta)
             {
-                Console.WriteLine(aPart);
+                System.Console.WriteLine($"Contas: {contas}");
             }
+            System.Console.WriteLine();
 
-            // Verifique a lista para a peça #1734. Isso chama o método IEquatable.Equals
-            // da classe Part, que verifica o PartId para igualdade.
-            Console.WriteLine("\nContains(\"1734\"): {0}", parts.Contains(new Part { PartId = 1734, PartName = "" }));
 
-            // Insira um novo item na posição 2.
-            Console.WriteLine("\nInsert(2, \"1834\")");
-            parts.Insert(2, new Part() { PartName = "brake lever", PartId = 1834 });
-
-            foreach (Part aPart in parts)
+            for (int i = 0; i < Conta.Count; i++)
             {
-                Console.WriteLine(aPart);
+                System.Console.WriteLine($"Conta Corrente: {Conta[i]}");
             }
+            System.Console.WriteLine("\nNúmero de contas: {0}\n", Conta.Count);
 
-            Console.WriteLine($"\nParts[2]: {parts[2]}");
-            Console.WriteLine("\nRemove(\"1534\")");
 
-            // Isso removerá a parte 1534 mesmo que o PartName seja diferente,
-            // porque o método Equals verifica apenas PartId para igualdade.
-            parts.Remove(new Part() { PartId = 1534, PartName = "cogs" });
+            Console.WriteLine("\nCONTAINS Chave Pix: {0}",
+            Conta.Contains(new ContaCorrente { Correntista = "WTA", ChavePix = 00009 }));
 
-            foreach (Part aPart in parts)
-            {
-                Console.WriteLine(aPart);
-            }
+            Console.WriteLine("\nFIND Correntista where correntista contains \"WTA\":  {0}",
+            Conta.Find(cc => cc.Correntista.Contains("WTA")));
 
-            // This will remove the part at index 3.
-            Console.WriteLine("\nRemoveAt(3)");
-            parts.RemoveAt(3);
-
-            foreach (Part aPart in parts)
-            {
-                Console.WriteLine(aPart);
-            }
+            Console.WriteLine("\nEXISTS chave pix with 00013: {0} \n",
+            Conta.Exists(cc => cc.ChavePix == 00013));
         }
     }
 }
