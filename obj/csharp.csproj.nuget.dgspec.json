@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wallison-santos\\Documents\\GitHub\\csharp\\csharp.csproj": {}
+    "C:\\Users\\walli\\OneDrive\\Documentos\\GitHub\\csharp\\csharp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wallison-santos\\Documents\\GitHub\\csharp\\csharp.csproj": {
+    "C:\\Users\\walli\\OneDrive\\Documentos\\GitHub\\csharp\\csharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wallison-santos\\Documents\\GitHub\\csharp\\csharp.csproj",
+        "projectUniqueName": "C:\\Users\\walli\\OneDrive\\Documentos\\GitHub\\csharp\\csharp.csproj",
         "projectName": "csharp",
-        "projectPath": "C:\\Users\\wallison-santos\\Documents\\GitHub\\csharp\\csharp.csproj",
-        "packagesPath": "C:\\Users\\wallison-santos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wallison-santos\\Documents\\GitHub\\csharp\\obj\\",
+        "projectPath": "C:\\Users\\walli\\OneDrive\\Documentos\\GitHub\\csharp\\csharp.csproj",
+        "packagesPath": "C:\\Users\\walli\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\walli\\OneDrive\\Documentos\\GitHub\\csharp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\wallison-santos\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\walli\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -43,8 +43,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -53,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
