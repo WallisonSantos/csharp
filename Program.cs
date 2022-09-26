@@ -14,7 +14,9 @@ namespace csharp
             Contas.Add(new ContaCorrente() { ChavePix = 00002, Correntista = "KAREEN" });
             Contas.Add(new ContaCorrente() { ChavePix = 00011, Correntista = "MARIA" });
             Contas.Add(new ContaCorrente() { ChavePix = 00022, Correntista = "JOAO" });
-            Contas.Add(new ContaCorrente() { ChavePix = 00022, Correntista = "ZÉ" });
+            Contas.Add(new ContaCorrente() { ChavePix = 00111, Correntista = "JOSÉ" });
+            Contas.Add(new ContaCorrente() { ChavePix = 00111, Correntista = "LUAN" });
+            Contas.Add(new ContaCorrente() { ChavePix = 00222, Correntista = "ZÉ" });
 
             foreach (ContaCorrente contas in Contas)
             {
@@ -28,8 +30,8 @@ namespace csharp
             );
             Console.WriteLine("---------------------------------------------------------");
 
-            Console.WriteLine("\nCONTAINS chave pix: {0} ",
-                Contas.Contains(new ContaCorrente { Correntista = "0000" })
+            Console.WriteLine("\nCONTAINS chave pix \"00001\": {0} ",
+                Contas.Contains(new ContaCorrente { ChavePix = 00001 })
             );
             Console.WriteLine("---------------------------------------------------------");
 
@@ -50,11 +52,6 @@ namespace csharp
             );
             Console.WriteLine("---------------------------------------------------------");
 
-            Console.WriteLine("\n FILTRO com mais de 5 letras: {0} ",
-                Contas.FindAll( cc => cc.Correntista.Length > 5 )
-            );
-            Console.WriteLine("---------------------------------------------------------");
-
 
             // Index
             Console.WriteLine("\nFIND INDEX \"WALL\" {0} ",
@@ -70,14 +67,35 @@ namespace csharp
 
             foreach (ContaCorrente contas in Contas)
             {
-                Console.WriteLine("\n Contas ", contas);
+                Console.WriteLine($"\nContas: {contas} ");
             }
             Console.WriteLine("---------------------------------------------------------");
 
-            if ( Contas.FindAll( cc => cc.Correntista.Length == 3) )
+
+            List< ContaCorrente > FilterLitas2 = Contas.FindAll( cc => cc.Correntista.Length == 8 );
+            List< ContaCorrente > FilterLitas1 = Contas.FindAll( cc => cc.Correntista.Length == 2 );
 
 
+            // Remove
+            Console.WriteLine( "\nREMOVE contas com 8 letras: ({0}) conta(s) removida(s) \n",
+                Contas.RemoveAll( cc => cc.Correntista.Length == 4 )
+            );
+            Console.WriteLine("---------------------------------------------------------");
+            Contas.RemoveAt(2);
+            Contas.RemoveRange(2, 2);
 
+
+            if ( FilterLitas2.Count > 0 ) {
+                foreach ( ContaCorrente filter in FilterLitas2 ) {
+                    Console.WriteLine( "\nFiltro contas com 8 letras {0} ", filter );
+                }
+            Console.WriteLine("---------------------------------------------------------");
+            } else if ( FilterLitas1.Count > 0 ) {
+                foreach ( ContaCorrente filter in FilterLitas1 ) {
+                    Console.WriteLine( "\nFiltro contas com 2 letras {0} ", filter );
+                }
+            Console.WriteLine("---------------------------------------------------------");
+            }
         }
     }
 }
