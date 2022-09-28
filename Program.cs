@@ -7,95 +7,36 @@ namespace csharp
     {
         static void Main(string[] args)
         {
-            // Lista de Contas Correntes
-            List<ContaCorrente> Contas = new List<ContaCorrente>();
+            List<ContaCorrente> ContaPessoaFisica = new List<ContaCorrente>();
 
-            Contas.Add(new ContaCorrente() { ChavePix = 00001, Correntista = "WALLISON" });
-            Contas.Add(new ContaCorrente() { ChavePix = 00002, Correntista = "KAREEN" });
-            Contas.Add(new ContaCorrente() { ChavePix = 00011, Correntista = "MARIA" });
-            Contas.Add(new ContaCorrente() { ChavePix = 00022, Correntista = "JOAO" });
-            Contas.Add(new ContaCorrente() { ChavePix = 00111, Correntista = "JOSÉ" });
-            Contas.Add(new ContaCorrente() { ChavePix = 00111, Correntista = "LUAN" });
-            Contas.Add(new ContaCorrente() { ChavePix = 00222, Correntista = "ZÉ" });
+            ContaPessoaFisica.Add(new ContaCorrente() { Correntista = "SILVA", ChavePix = 001 });
+            ContaPessoaFisica.Add(new ContaCorrente() { Correntista = "SANTOS", ChavePix = 002 });
+            ContaPessoaFisica.Insert(0, new ContaCorrente() { Correntista = "ASSIS", ChavePix = 003 });
 
-            foreach (ContaCorrente contas in Contas)
+            foreach (ContaCorrente depositar in ContaPessoaFisica)
             {
-                Console.WriteLine($"\nContas: {contas} ");
+                depositar.Depositar(1000);
+                System.Console.WriteLine(depositar);
             }
-            Console.WriteLine("---------------------------------------------------------");
 
+            List<ContaCorrente> Filter = ContaPessoaFisica.FindAll(conta => conta.Correntista.Contains("ASSIS"));
 
-            Console.WriteLine("\nTOTAL de contas: {0} ",
-                Contas.Count()
-            );
-            Console.WriteLine("---------------------------------------------------------");
-
-            Console.WriteLine("\nCONTAINS chave pix \"00001\": {0} ",
-                Contas.Contains(new ContaCorrente { ChavePix = 00001 })
-            );
-            Console.WriteLine("---------------------------------------------------------");
-
-            Console.WriteLine("\nEXISTS correntista pix with 00013: {0} ",
-                Contas.Exists(cc => cc.ChavePix == 00011)
-            );
-            Console.WriteLine("---------------------------------------------------------");
-
-
-            // Find
-            Console.WriteLine("\nFIRST \"WALL\": {0} ",
-                Contas.Find(cc => cc.Correntista.Contains("WALL"))
-            );
-            Console.WriteLine("---------------------------------------------------------");
-
-            Console.WriteLine("\nLAST \"WALL\": {0} ",
-                Contas.FindLast(cc => cc.Correntista.Contains("WALL"))
-            );
-            Console.WriteLine("---------------------------------------------------------");
-
-
-            // Index
-            Console.WriteLine("\nFIND INDEX \"WALL\" {0} ",
-                Contas.FindIndex(cc => cc.Correntista.Contains("WALL"))
-            );
-            Console.WriteLine("---------------------------------------------------------");
-
-            Console.WriteLine("\nFIND LAST INDEX Correntista where correntista contains \"K\": {0}",
-                Contas.FindLastIndex(cc => cc.Correntista.Contains("K"))
-            );
-            Console.WriteLine("---------------------------------------------------------");
-
-
-            foreach (ContaCorrente contas in Contas)
+            foreach (ContaCorrente filter in Filter)
             {
-                Console.WriteLine($"\nContas: {contas} ");
+                if (filter.Correntista.Contains("ASSIS") && filter.Correntista.Contains("SÁ"))
+                    Console.WriteLine("\nCONTAINS ASSIS and SÁ {0}", filter);
+
+                else if (filter.Correntista.Contains("ASSIS"))
+                    System.Console.WriteLine("\nCONTAINS only ASSIS {0}", filter);
+
+                else if (filter.Correntista.Contains("SÁ"))
+                    System.Console.WriteLine("\nCONTAINS only SÁ {0}", filter);
+
+                else
+                    System.Console.WriteLine("\nNOT CONTAINS nothing {0}", filter);
             }
-            Console.WriteLine("---------------------------------------------------------");
 
 
-            List< ContaCorrente > FilterLitas2 = Contas.FindAll( cc => cc.Correntista.Length == 8 );
-            List< ContaCorrente > FilterLitas1 = Contas.FindAll( cc => cc.Correntista.Length == 2 );
-
-
-            // Remove
-            Console.WriteLine( "\nREMOVE contas com 8 letras: ({0}) conta(s) removida(s) \n",
-                Contas.RemoveAll( cc => cc.Correntista.Length == 4 )
-            );
-            Console.WriteLine("---------------------------------------------------------");
-            Contas.RemoveAt(2);
-            Contas.RemoveRange(2, 2);
-
-
-            if ( FilterLitas2.Count > 0 ) {
-                foreach ( ContaCorrente filter in FilterLitas2 ) {
-                    Console.WriteLine( "\nFiltro contas com 8 letras {0} ", filter );
-                }
-            Console.WriteLine("---------------------------------------------------------");
-            } else if ( FilterLitas1.Count > 0 ) {
-                foreach ( ContaCorrente filter in FilterLitas1 ) {
-                    Console.WriteLine( "\nFiltro contas com 2 letras {0} ", filter );
-                }
-            Console.WriteLine("---------------------------------------------------------");
-            }
         }
     }
 }
